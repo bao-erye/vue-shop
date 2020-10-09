@@ -14,6 +14,6 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'indent':['off',2],
-    'Missing space before function parentheses':0
+    'space-before-function-paren':0
   }
 }
