@@ -48,7 +48,7 @@ export default {
       // 表单内容数据绑定
       loginForm: {
         username: '',
-        password: '',
+        password: ''
       },
       // 内容验证
       LoginFormRules: {
@@ -58,8 +58,8 @@ export default {
             min: 3,
             max: 10,
             message: '长度在 3 到 10 个字符',
-            trigger: 'blur',
-          },
+            trigger: 'blur'
+          }
         ],
         passwordRule: [
           { required: true, message: '请输入密码', trigger: 'blur' },
@@ -67,10 +67,10 @@ export default {
             min: 6,
             max: 12,
             message: '长度在 6 到 12 个字符',
-            trigger: 'blur',
-          },
-        ],
-      },
+            trigger: 'blur'
+          }
+        ]
+      }
     }
   },
   methods: {
@@ -87,9 +87,9 @@ export default {
     resetForm(formName) {
       // this.$refs[formName].resetFields()
       this.$router.push('/home')
-    },
-  },
-}
+    }
+  }
+}   
 </script>
 
 <style lang="less" scoped>
