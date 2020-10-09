@@ -43,7 +43,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       // 表单内容数据绑定
       loginForm: {
@@ -74,7 +74,7 @@ export default {
     }
   },
   methods: {
-    submitForm(formName) {
+    submitForm (formName) {
       this.$refs[formName].validate(async (valid) => {
         if (!valid) return
         const { data: res } = await this.$http.post('login', this.loginForm)
@@ -84,12 +84,12 @@ export default {
         this.$router.push('/home')
       })
     },
-    resetForm(formName) {
+    resetForm (formName) {
       // this.$refs[formName].resetFields()
       this.$router.push('/home')
     }
   }
-}   
+}
 </script>
 
 <style lang="less" scoped>
