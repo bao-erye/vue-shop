@@ -11,30 +11,24 @@
         ref="loginForm"
         :rules="LoginFormRules"
         label-width="0px"
-        class="login-form"
-      >
+        class="login-form">
         <!-- 用户 -->
-        <el-form-item prop="usernameRule">
+        <el-form-item prop="username">
           <el-input
             v-model="loginForm.username"
-            prefix-icon="iconfont icon-yonghu"
-          ></el-input>
+            prefix-icon="iconfont icon-yonghu"></el-input>
         </el-form-item>
         <!-- 密码 -->
-        <el-form-item prop="passwordRule">
+        <el-form-item prop="password">
           <el-input
+            type="password"
             v-model="loginForm.password"
-            prefix-icon="iconfont icon-mima"
-          ></el-input>
+            prefix-icon="iconfont icon-mima"></el-input>
         </el-form-item>
         <!-- 按钮区域 -->
         <el-form-item class="btns">
-          <el-button type="primary" @click="submitForm('loginForm')"
-            >登录</el-button
-          >
-          <el-button type="info" @click="resetForm('loginForm')"
-            >重置</el-button
-          >
+          <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
+          <el-button type="info" @click="resetForm('loginForm')">重置</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -43,16 +37,16 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       // 表单内容数据绑定
       loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '123456'
       },
       // 内容验证
       LoginFormRules: {
-        usernameRule: [
+        username: [
           { required: true, message: '请输入用户账号', trigger: 'blur' },
           {
             min: 3,
@@ -61,7 +55,7 @@ export default {
             trigger: 'blur'
           }
         ],
-        passwordRule: [
+        password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
           {
             min: 6,
@@ -85,8 +79,10 @@ export default {
       })
     },
     resetForm (formName) {
-      // this.$refs[formName].resetFields()
-      this.$router.push('/home')
+      // debugger
+      this.$refs[formName].resetFields()
+      console.log(this.loginForm)
+      // this.$router.push('/home')
     }
   }
 }
