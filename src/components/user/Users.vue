@@ -49,7 +49,7 @@
             </el-switch>
           </template>
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="250px">
           <template slot-scope="scope">
             <el-button
               type="primary"
@@ -73,6 +73,7 @@
                 type="warning"
                 icon="el-icon-setting"
                 size="mini"
+                @click="setRoleDialog(scope.row)"
               ></el-button>
             </el-tooltip>
           </template>
@@ -130,7 +131,6 @@
         <el-form
           :model="editForm"
           ref="editFormRef"
-          :rules="editFormRules"
           label-width="70px"
         >
           <!-- 用户名 -->
@@ -150,6 +150,29 @@
         <span slot="footer" class="dialog-footer">
           <el-button @click="editDialogVisible = false">取 消</el-button>
           <el-button type="primary" @click="editDialogVisible = false"
+            >确 定</el-button
+          >
+        </span>
+      </el-dialog>
+      <!-- 设置用户角色对话框区域 -->
+      <el-dialog title="设置角色" :visible.sync="setRoleDialogVisible" width="50%" append-to-body>
+        <!-- 内容主体区域 -->
+        <div>
+          <p>当前的用户：{{userChoosed.username}}</p>
+          <p>当前的角色：{{userChoosed.userRole}}</p>
+          <el-select v-model="roleChoosed" placeholder="请选择用户角色">
+            <el-option
+              v-for="item in rolesList"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id">
+            </el-option>
+          </el-select>
+        </div>
+        <!-- 底部区域 -->
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="setRoleDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="setRoleDialogVisible = false"
             >确 定</el-button
           >
         </span>
@@ -218,7 +241,18 @@ export default {
         username: '',
         email: '',
         mobile: ''
-      }
+      },
+      // 设置用户角色对话框显示与隐藏
+      setRoleDialogVisible: false,
+      // 所有角色列表
+      rolesList: [],
+      // 选中用户信息对象
+      userChoosed: {
+        username: '',
+        userRole: ''
+      },
+      // 选中角色信息
+      roleChoosed: ''
     }
   },
   created() {
@@ -229,7 +263,7 @@ export default {
       const { data: res } = await this.$http.get('users', {
         params: this.queryInfo
       })
-      console.log(res)
+      // console.log(res)
       if (res.meta.status !== 200) {
         return this.$message.error('获取用户列表失败')
       }
@@ -286,7 +320,7 @@ export default {
     },
     // 监听删除用户按钮点击事件
     deleteUser (userID) {
-      console.log('用户ID' + userID)
+      // console.log('用户ID' + userID)
       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -308,6 +342,22 @@ export default {
             message: '已取消删除'
           })
         })
+    },
+    // 获取所有角色列表
+    async getRolesList () {
+      const { data: res } = await this.$http.get('roles')
+      if (res.meta.status !== 200) {
+        this.$message.error('获取角色列表失败')
+      }
+      this.rolesList = res.data
+      this.$message.success('成功获取所有角色列表')
+    },
+    // 设置用户角色按钮点击事件
+    setRoleDialog (userInfo) {
+      this.setRoleDialogVisible = true
+      this.userChoosed.username = userInfo.username
+      this.userChoosed.userRole = userInfo.role_name
+      this.getRolesList()
     }
   }
 }
