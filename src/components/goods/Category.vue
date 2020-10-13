@@ -85,11 +85,13 @@
             <!-- props指定配置对象 -->
             <!-- model选中项绑定值 -->
             <el-cascader
+              style="width:100%;"
               v-model="selectedKeys"
               :options="parentCateList"
               :props="cascaderProps"
               @change="parentCateChange"
-              clearable>
+              clearable
+              popper-class="cascader">
             </el-cascader>
           </el-form-item>
         </el-form>
@@ -233,7 +235,9 @@ export default {
 .margintop {
   margin-top: 15px;
 }
-.el-cascader{
-  width: 100%;
+.cascader{
+  height: 150px;
+  overflow-y:scroll;
+  overflow-x:hidden;
 }
 </style>
