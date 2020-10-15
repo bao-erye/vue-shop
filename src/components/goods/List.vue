@@ -78,7 +78,7 @@ export default {
     async getGoodsList() {
       const { data: res } = await this.$http.get('goods',
       { params: this.queryInfo })
-      console.log(res.data)
+      // console.log(res.data)
       if (res.meta.status !== 200) {
         this.$message.error('获取商品列表失败')
       }

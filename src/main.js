@@ -15,15 +15,20 @@ import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
 // 导入axiso
 import axios from 'axios'
+
+// import { config } from 'vue/types/umd'
+
 Vue.prototype.$http = axios
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 // axiso请求拦截
 axios.interceptors.request.use(config => {
   console.log(config)
+  // 在requrst中展示进度条
   // 为请求头对象添加token验证的Authorization字段
   config.headers.Authorization = window.sessionStorage.getItem('token')
   return config
 })
+
 Vue.config.productionTip = false
 
 // 注册第三方组件

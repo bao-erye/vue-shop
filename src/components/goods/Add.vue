@@ -176,7 +176,7 @@ export default {
     },
     // 处理预览事件
     handlePreview(file) {
-      console.log(file)
+      // console.log(file)
       this.previewPath = file.response.data.url
       this.previewDialogVisible = true
     },
@@ -188,17 +188,17 @@ export default {
       const i = this.addGoodForm.pics.findIndex(x => x.pic === filePath)
       // 3.根据索引移除图片路径
       this.addGoodForm.pics.splice(i, 1)
-      console.log(this.addGoodForm)
+      // console.log(this.addGoodForm)
     },
     // 处理上传成功事件
     handleSuccess(response) {
-      console.log(response)
+      // console.log(response)
       this.$message.success('成功上传图片')
       if (response.meta.status !== 200) {
         this.$message.error('图片上传失败' + response.meta.msg)
       }
       this.addGoodForm.pics.push({ pic: response.data.tmp_path })
-      console.log(this.addGoodForm)
+      // console.log(this.addGoodForm)
     },
     // 处理上传失败事件
     handleError(err) {

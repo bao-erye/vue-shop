@@ -181,7 +181,7 @@ export default {
       const { data: res } = await this.$http.get('categories', {
         params: this.queryInfo
       })
-      console.log(res)
+      // console.log(res)
       if (res.meta.status !== 200) {
         return this.$message.error('获取商品列表失败')
       }
@@ -206,7 +206,7 @@ export default {
       if (res.meta.status !== 200) {
         this.$message.error('获取父级分类列表失败')
       }
-      console.log(res.data)
+      // console.log(res.data)
       this.parentCateList = res.data
     },
     // 监听添加分类按钮点击事件
@@ -218,7 +218,7 @@ export default {
     parentCateChange (addCateFormRef) {
       this.addCateForm.cat_pid = this.selectedKeys[this.selectedKeys.length - 1]
       this.addCateForm.cat_level = this.selectedKeys.length
-      console.log(this.addCateForm)
+      // console.log(this.addCateForm)
     },
     // 添加分类弹框关闭事件
     addCateDialogClosed (addCateFormRef) {

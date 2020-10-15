@@ -64,7 +64,7 @@ export default {
     var myChart = echarts.init(document.getElementById('main'))
 
     const { data: res } = await this.$http.get('reports/type/1')
-      console.log(res.data)
+      // console.log(res.data)
       if (res.meta.status !== 200) {
         this.$message.error('获取折线图数据失败')
       }

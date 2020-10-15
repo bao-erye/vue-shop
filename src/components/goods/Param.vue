@@ -88,7 +88,7 @@ export default {
     // 获取分类列表
     async getCateList() {
       const { data: res } = await this.$http.get('categories')
-      console.log(res.data)
+      // console.log(res.data)
       if (res.meta.status !== 200) {
         this.$message.error('获取商品分类列表失败')
       }
@@ -96,17 +96,15 @@ export default {
     },
     // 选择器分类变化监听事件
     async parentCateChange() {
-      console.log(this.selectedKeys)
+      // console.log(this.selectedKeys)
       if (this.selectedKeys !== 3) {
         this.selectedKeys = []
       }
-      const { data: res } = await this.$http.get(`categories/${this.cateID}/attributes`,
-      { params: { sel: this.activeName } })
-      console.log(res)
+      // console.log(res)
     },
     // 标签页点击事件
     tagClick() {
-      console.log(this.activeName)
+      // console.log(this.activeName)
     }
   }
 }

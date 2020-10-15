@@ -81,7 +81,7 @@ export default {
     resetForm (formName) {
       // debugger
       this.$refs[formName].resetFields()
-      console.log(this.loginForm)
+      // console.log(this.loginForm)
       // this.$router.push('/home')
     }
   }
